@@ -1,5 +1,6 @@
 package com.example.examsystem.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.examsystem.mapper.RecordingDataMapper;
 import com.example.examsystem.model.LearingExercises;
 import com.example.examsystem.model.LearningRecords;
@@ -8,6 +9,7 @@ import com.example.examsystem.model.RecordingData;
 import com.example.examsystem.service.LearningRecordsSel;
 import com.example.examsystem.service.ServiceImpl.*;
 import com.example.examsystem.util.ChangeUtil;
+import com.example.examsystem.util.CreateUtil;
 import com.example.examsystem.util.DelUtil;
 import com.example.examsystem.util.SubmitUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -25,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@Controller
+@CrossOrigin
 @RestController
 @RequestMapping("/api/exercises")
 public class ExercisesController {
@@ -52,8 +54,8 @@ public class ExercisesController {
     /**
      * 查询
      */
-    @PostMapping("/GetPutExercisesDatas")
-    public List<QuestionbankData> getExercisesDatas(@RequestBody String chapterid){
+    @PostMapping("/GetPutExercisesDatas/{chapterid}")
+    public List<QuestionbankData> getExercisesDatas(@PathVariable String chapterid){
         return questionbankDataService.getExercisesDatas(chapterid);
     }
 
@@ -68,10 +70,19 @@ public class ExercisesController {
     /**
      * 删除
      */
-    @PutMapping("/ActionsExercisesDatas")
-    public DelUtil actionsExercisesDatas(@RequestBody int id){
+    @PutMapping("/ActionsExercisesDatas/{id}")
+    public DelUtil actionsExercisesDatas(@PathVariable int id){
         return questionbankDataService.del(id);
     }
+
+    /**
+     * 添加
+     */
+    @PostMapping("/ActionsExercisesDatas")
+    public CreateUtil actionsExercisesDatasAdd(@RequestBody QuestionbankData questionbankData){
+        return questionbankDataService.actionsExercisesDatasAdd(questionbankData);
+    }
+
 
     /**
      * 用户考试提交

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@Controller
+@CrossOrigin
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -66,8 +66,8 @@ public class UserController {
     /**
      * 删除用户数据
      */
-    @PutMapping("/studentmanagement")
-    public DelUtil studentManagementDel(@RequestBody int number){
+    @PutMapping("/studentmanagement/{number}")
+    public DelUtil studentManagementDel(@PathVariable int number){
         return userDataService.studentManagementDel(number);
     }
 

@@ -14,6 +14,7 @@ import com.example.examsystem.model.RecordingData;
 import com.example.examsystem.model.UserData;
 import com.example.examsystem.service.QuestionbankDataService;
 import com.example.examsystem.util.ChangeUtil;
+import com.example.examsystem.util.CreateUtil;
 import com.example.examsystem.util.DelUtil;
 import com.example.examsystem.util.SubmitUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,6 +120,16 @@ public class QuestionbankDataServiceImpl extends ServiceImpl<QuestionbankDataMap
             return SubmitUtil.ok();
         }catch (Exception e){
             return SubmitUtil.fail();
+        }
+
+    }
+
+    public CreateUtil actionsExercisesDatasAdd(QuestionbankData questionbankData) {
+        try {
+            questionbankDataMapper.insert(questionbankData);
+            return CreateUtil.ok();
+        }catch (Exception e){
+            return CreateUtil.fail();
         }
 
     }
