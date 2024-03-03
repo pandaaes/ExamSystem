@@ -13,5 +13,5 @@ public class StudentMod {
     public String clas;
     public int number;
     public String speciality;
-    public String password="123456";
+    public String password;
 }

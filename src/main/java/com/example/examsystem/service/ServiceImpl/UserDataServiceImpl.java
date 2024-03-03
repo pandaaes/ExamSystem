@@ -65,6 +65,7 @@ public class UserDataServiceImpl extends ServiceImpl<UserDataMapper, UserData> i
             userData.setClas(studentMod.getClas());
             userData.setNumber(studentMod.getNumber());
             userData.setSpeciality(studentMod.getSpeciality());
+            userData.setPassword("123456");
             userDataMapper.insert(userData);
             return CreateUtil.ok();
         }catch (Exception e){
